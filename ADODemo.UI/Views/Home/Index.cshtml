@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Order Lookup</h2>
+
+@using (Html.BeginForm("GetOrder", "Home", FormMethod.Post))
+{
+    <p> Enter a order number:</p>
+    @Html.TextBox("orderID")
+    <button> Lookup </button>
+}

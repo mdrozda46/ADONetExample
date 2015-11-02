@@ -1,0 +1,53 @@
+﻿@model ADODemo.Data.Models.Order
+
+@{
+    ViewBag.Title = "GetOrder";
+}
+
+<h2>Order Details</h2>
+
+<div>
+    <p><b>Company Name:</b> @Html.DisplayFor(o => o.CompanyName)</p>
+    <p><b>Customer ID:</b> @Html.DisplayFor(o => o.CustomerID)</p>
+    <p><b>Order ID:</b> @Html.DisplayFor(o => o.OrderID)</p>
+    <p><b>Order Date:</b> @Html.DisplayFor(o => o.OrderDate)</p>
+    <p><b>Order Total:</b> @Html.DisplayFor(o => o.Total)</p>
+
+</div>
+
+<br/>
+
+<h4>Products Ordered</h4>
+<div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>ID</th>
+            <th>Unit Price</th>
+            <th>Quantity</th>
+            <th>Discount</th>
+            <th>SubTotal</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.ProductName</td>
+                <td>@product.ProductID</td>
+                <td>@Html.DisplayFor(p => product.UnitPrice)</td>
+                <td>@product.QuantityOrdered</td>
+                <td>@product.Discount.ToString("P")</td>
+                <td>@Html.DisplayFor(p => product.ProdTotalCost)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+<br/>
+@Html.ActionLink("Back to home", "Index", "Home")
+
+
+
