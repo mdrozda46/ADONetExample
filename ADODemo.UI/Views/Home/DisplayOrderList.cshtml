@@ -1,0 +1,31 @@
+﻿@model List<int>
+
+@{
+    ViewBag.Title = "DisplayOrderList";
+}
+
+<h2>Orders</h2>
+
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var orderID in Model)
+            {
+                <tr>
+                    <td>@orderID</td>
+                    <td>@Html.ActionLink("View Details", "GetOrder", "Home", new { orderID = orderID} , null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<br />
+@Html.ActionLink("Back to home", "Index", "Home")
+

@@ -27,5 +27,24 @@ namespace ADODemo.UI.Controllers
             return View(order);
 
         }
+
+        public ActionResult GetOrder(int orderID)
+        {
+            var repo = new NorthwindsRepo();
+            Order order = new Order();
+            order = repo.GetByIdStoredProcedure(orderID);
+            return View(order);
+
+        }
+
+        public ActionResult DisplayOrderList()
+        {
+            List<int> orderIDs = new List<int>();
+
+            var repo = new NorthwindsRepo();
+
+            orderIDs = repo.GetOrderList();
+            return View(orderIDs);
+        }
     }
 }

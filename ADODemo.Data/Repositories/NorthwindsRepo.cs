@@ -50,6 +50,52 @@ namespace ADODemo.Data.Repositories
             return order;
         }
 
+        public int GetTotalOrderCount()
+        {
+            int orderCount;
+
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandText = ("SELECT Count(*) FROM Orders");
+                cmd.Connection = cn;
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    orderCount = int.Parse(cmd.ExecuteScalar().ToString());
+                }
+            }
+
+            return orderCount;
+        }
+
+        public List<int> GetOrderList()
+        {
+            List<int> OrderIDs = new List<int>();
+
+            using (var cn = new SqlConnection(Settings.ConnectionString))
+            {
+                var cmd = new SqlCommand();
+                cmd.CommandText = ("SELECT Orders.OrderID From ORDERS");
+                cmd.Connection = cn;
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        OrderIDs.Add(int.Parse(dr["OrderID"].ToString()));
+                    } 
+                }
+            }
+
+            return OrderIDs;
+        }
+
+
+
         private Product PopulateProductsFromDataReader(SqlDataReader dr)
         {
             Product product = new Product();

@@ -7,7 +7,11 @@
 
 @using (Html.BeginForm("GetOrder", "Home", FormMethod.Post))
 {
-    <p> Enter a order number:</p>
+    <p> Enter an order number:</p>
     @Html.TextBox("orderID")
     <button> Lookup </button>
+
+    <br/><br/>
+
+    @Html.ActionLink("Display All Order IDs", "DisplayOrderList", "Home", null, new {@class = "btn btn-primary"})
 }
