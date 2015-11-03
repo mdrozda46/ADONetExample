@@ -62,10 +62,8 @@ namespace ADODemo.Data.Repositories
                 cmd.Connection = cn;
                 cn.Open();
 
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    orderCount = int.Parse(cmd.ExecuteScalar().ToString());
-                }
+                orderCount = int.Parse(cmd.ExecuteScalar().ToString());
+
             }
 
             return orderCount;
