@@ -1,10 +1,10 @@
-﻿@model List<int>
+﻿@model ADODemo.UI.Models.AllOrdersVM
 
 @{
     ViewBag.Title = "DisplayOrderList";
 }
 
-<h2>Orders</h2>
+<h2>Orders - (@Model.OrderCount)</h2>
 
 <div>
     <table class="table table-striped">
@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var orderID in Model)
+            @foreach (var orderID in Model.OrderList)
             {
                 <tr>
                     <td>@orderID</td>

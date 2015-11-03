@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ADODemo.Data.Models;
 using ADODemo.Data.Repositories;
+using ADODemo.UI.Models;
 
 namespace ADODemo.UI.Controllers
 {
@@ -13,6 +14,7 @@ namespace ADODemo.UI.Controllers
         // GET: Home
         public ActionResult Index()
         {
+
             return View();
         }
 
@@ -39,12 +41,15 @@ namespace ADODemo.UI.Controllers
 
         public ActionResult DisplayOrderList()
         {
-            List<int> orderIDs = new List<int>();
+            var ordersVM = new AllOrdersVM();
+            int numberOfOrders = 0; 
 
             var repo = new NorthwindsRepo();
 
-            orderIDs = repo.GetOrderList();
-            return View(orderIDs);
+            ordersVM.OrderList = repo.GetOrderList();
+            ordersVM.OrderCount = repo.GetTotalOrderCount();
+            
+            return View(ordersVM);
         }
     }
 }
