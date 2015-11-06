@@ -42,7 +42,6 @@ namespace ADODemo.UI.Controllers
         public ActionResult DisplayOrderList()
         {
             var ordersVM = new AllOrdersVM();
-            int numberOfOrders = 0; 
 
             var repo = new NorthwindsRepo();
 
